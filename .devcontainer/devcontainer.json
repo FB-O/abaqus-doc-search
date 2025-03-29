@@ -1,6 +1,6 @@
 
 {
-	"name": "Abaqus Doc Embedding",
+	"name": "Abaqus Doc Search",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": ".." 

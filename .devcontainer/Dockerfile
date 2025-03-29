@@ -12,10 +12,18 @@ WORKDIR /workspace
 # Copy dependency file first (optimizes caching)
 COPY requirements.txt .
 
-# Install system dependencies & Python packages
-RUN apt-get update && apt-get install --no-install-recommends -y \
+# Update package lists
+RUN apt-get update 
+
+# Install system dependencies
+RUN apt-get install --no-install-recommends -y \
     git \
     curl \
-  && pip install --no-cache-dir --upgrade pip \
-  && pip install --no-cache-dir -r requirements.txt \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Ugrade pip
+RUN pip install --no-cache-dir --upgrade pip
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
